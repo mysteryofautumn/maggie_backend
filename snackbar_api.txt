@@ -1,0 +1,102 @@
+    getItems
+    method: GET
+    Input: No
+    Output: {
+       id: 1,
+       name: 'apple',
+       purchasing_price: 1,
+       selling_price: 2,
+       stock_amount:0,
+       shelf_amount:0,
+       comment:'null',
+       restock:3
+      }
+
+    addItem
+    method:POST
+    Input:{
+       name: 'apple',
+       purchasing_price: 1,
+       selling_price: 2,
+       stock_amount:0,
+       shelf_amount:0,
+       comment:'null',
+       restock:3
+    }
+    Output:{
+      'code': ''
+      'msg': ''
+    }
+
+    deleteItem
+    method:POST
+    Input:{
+      item_id:1
+    }
+    Output:{
+      'code': ''
+      'msg': ''
+    }
+
+    editItem
+    meithod:post
+    Input:{
+      item_id:1
+    }
+    Output:{
+      'code': ''
+      'msg': ''
+    }
+
+    addInstockOrder
+    method:POST
+    Input:{
+       ’items‘: [{item_id:1
+       amount:4},...]
+    }
+    Output:{
+      'code': ''
+      'msg': ''
+    }
+
+    getInstockOrder get every instock-order's cost
+    method:Get
+    Input:{}
+    Output{
+      order_id:4
+      cost:45
+    }
+
+    addOutstockOrder
+    method:post
+    Input{
+      ’items‘: [{item_id:1
+      amount:4},...]
+    }
+    Output:{
+      'code': ''
+      'msg': ''
+    }
+
+    getReocrd
+    method:GET
+    Input:{}
+    Output{
+      id:4
+      received_revenue:3
+      expected_revenue:4
+      cost:4
+      difference:3
+    }
+
+    addRecord
+    method:POST
+    Input:{
+      received_revenue:4
+      ’items‘: [{item_id:1
+      amount:4},...]
+    }
+    Output:{
+      'code': ''
+      'msg': ''
+    }
