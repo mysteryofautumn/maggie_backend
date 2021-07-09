@@ -27,6 +27,13 @@ class ItemManagement(BaseService):
             shelf_amount = self.data['shelf_amount']
             comment = self.data['comment']
             restock = self.data['restock']
+            if len(name) == 0 or \
+                    len(purchasing_price) == 0 or len(selling_price) == 0 or len(stock_amount) \
+                    == 0 or len(shelf_amount) == 0 or len(restock) == 0:
+                self._init_response()
+                return self._get_response(INVALID_BLANK, -1)
+
+
         except Exception as error:
             traceback.print_exc()
             self._init_response()
@@ -52,7 +59,6 @@ class ItemManagement(BaseService):
             connection.commit()
             cursor.execute(GET_ITEMS_SQL)
             rows = dictfetchall(cursor)
-            print(rows)
             reses = {
                 "items": rows
             }
@@ -115,6 +121,40 @@ class ItemManagement(BaseService):
             connection.rollback()
             self._init_response()
             return self._get_response(SERVER_ERROR, -1)
+
+    def get_item_by_id(self):
+        try:
+            item_id = self.data['item_id']
+        except Exception as error:
+            traceback.print_exc()
+            self._init_response()
+            return self._get_response(POST_ARG_ERROR, -1)
+
+        try:
+            cursor = connection.cursor()
+            cursor.execute(GET_ITEM_BY_ID_SQL, (item_id,))
+            connection.commit()
+            rows = dictfetchone(cursor)
+            self._init_response()
+            reses = {
+                "name": rows['name'],
+                "purchasing_price": rows['purchasing_price'],
+                "selling_price":rows['selling_price'],
+                "stock_amount":rows['stock_amount'],
+                "shelf_amount":rows['shelf_amount'],
+                "comment": rows['comment'],
+                "restock": rows['restock']
+            }
+            self._init_response()
+            self.response.update(reses)
+            return self._get_response(HANDLE_OK, 1)
+
+        except Exception as error:
+            traceback.print_exc()
+            connection.rollback()
+            self._init_response()
+            return self._get_response(SERVER_ERROR, -1)
+
 
 
 

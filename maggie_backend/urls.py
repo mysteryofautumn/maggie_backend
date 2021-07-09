@@ -24,6 +24,17 @@ urlpatterns = [
     path('addItem/', add_item),
     path('deleteItem/', delete_item),
     path('editItem/', edit_item),
+    path('authentication/', authentication),
+    path('getItemById/', get_item_by_id),
+    path('addInstock/', add_instock),
+    path('getNewestInorderId/', get_newest_inorder_id),
+    path('getInstock/', get_instock),
+    path('getNewestOutorderId/', get_newest_outorder_id),
+    path('addOutstock/', add_outstock),
+    path('addRevenue/', add_revenue),
+    path('getRevenue/', get_revenue),
+    path('getNewestRevenueId/',get_newest_revenue_id)
+
 
     # getItems
     # return: {
